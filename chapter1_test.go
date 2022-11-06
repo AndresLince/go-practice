@@ -26,3 +26,10 @@ func TestCheckPermutation(t *testing.T) {
 		t.Fatalf(`CheckPermutation("algoa", "algo") expect false`)
 	}
 }
+
+func TestUrlify(t *testing.T) {
+	response := Urlify("Mr John Smith    ", 13)
+	if response != "Mr20%John20%Smith" {
+		t.Fatalf(`Urlify("Mr John Smith    ", 13) expect valid string`)
+	}
+}
