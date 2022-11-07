@@ -33,3 +33,26 @@ func TestUrlify(t *testing.T) {
 		t.Fatalf(`Urlify("Mr John Smith    ", 13) expect valid string`)
 	}
 }
+
+func TestIsAPalindromePermutation(t *testing.T) {
+	response := IsAPalindromePermutation("Tact Coa")
+	if response != true {
+		t.Fatalf(`IsAPalindromePermutation("Tact Coa") expect true`)
+	}
+	response = IsAPalindromePermutation("taco cat")
+	if response != true {
+		t.Fatalf(`IsAPalindromePermutation("taco cat") expect true`)
+	}
+	response = IsAPalindromePermutation("taco cat")
+	if response != true {
+		t.Fatalf(`IsAPalindromePermutation("atco cta") expect true`)
+	}
+	response = IsAPalindromePermutation("Dabale arroz a la zorra el abad")
+	if response != true {
+		t.Fatalf(`IsAPalindromePermutation("Dabale arroz a la zorra el abad") expect true`)
+	}
+	response = IsAPalindromePermutation("Dabale carne a la zorra el abad")
+	if response != false {
+		t.Fatalf(`IsAPalindromePermutation("Dabale carne a la zorra el abad") expect false`)
+	}
+}
