@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 /*
 	Is Unique: Implement an algorithm to determine if a string has all unique
 	characters. What if you
@@ -89,4 +93,40 @@ func setCharAt(word string, index int, char rune) string {
 		return word
 	}
 	return word[:index] + string(char) + word[index+1:]
+}
+
+/*
+	Given a string, write a function to check if it is a permutation of a
+	palindrome. A palindrome is a word or phrase that is the same forwards and
+	backwards. A permutation is a rearrangement of letters. The palindrome does
+	not need to be limited to just dictionary words.
+*/
+func IsAPalindromePermutation(palindrome string) bool {
+	//var letters = make(map[rune]int)
+	var letters = make(map[rune]int)
+	palindrome = strings.ToLower(palindrome)
+	for _, char := range palindrome {
+		if char == 32 {
+			continue
+		}
+		if letters[char] == 0 {
+			letters[char] = 1
+		} else {
+			letters[char]++
+		}
+	}
+	oddCounter := 0
+	for _, char := range letters {
+		if isOddNumber(char) {
+			if oddCounter == 1 {
+				return false
+			}
+			oddCounter++
+		}
+	}
+	return true
+}
+
+func isOddNumber(number int) bool {
+	return number%2 != 0
 }
