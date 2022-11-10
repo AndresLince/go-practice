@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"strings"
 )
 
@@ -129,4 +130,56 @@ func IsAPalindromePermutation(palindrome string) bool {
 
 func isOddNumber(number int) bool {
 	return number%2 != 0
+}
+
+/*
+	There are three types of edits that can be performed on strings: insert a
+	character, remove a character, or replace a character. Given two strings,
+	write a function to check if they are one edit (or zero edits) away.
+*/
+func OneEditAway(word1, word2 string) bool {
+	length1 := len(word1)
+	length2 := len(word2)
+	if math.Abs(float64(length1-length2)) > 1 {
+		return false
+	}
+	if length1 == length2 {
+		return validateOneEdit(word1, word2)
+	}
+	if length1 < length2 {
+		return validateOneInsert(word1, word2)
+	}
+
+	return validateOneInsert(word2, word1)
+}
+
+func validateOneEdit(word1, word2 string) bool {
+	diffCounter := 0
+	for i := 0; i < len(word1); i++ {
+		if word1[i] != word2[i] {
+			if diffCounter == 1 {
+				return false
+			}
+			diffCounter++
+		}
+	}
+	return true
+}
+
+func validateOneInsert(word1, word2 string) bool {
+	index1 := 0
+	index2 := 0
+	for index1 < len(word1) && index2 < len(word2) {
+		if word1[index1] != word2[index2] {
+			if index1 != index2 {
+				return false
+			}
+			index2++
+		} else {
+			index1++
+			index2++
+		}
+	}
+
+	return true
 }
