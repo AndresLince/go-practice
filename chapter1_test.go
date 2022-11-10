@@ -56,3 +56,42 @@ func TestIsAPalindromePermutation(t *testing.T) {
 		t.Fatalf(`IsAPalindromePermutation("Dabale carne a la zorra el abad") expect false`)
 	}
 }
+
+func TestOneEditAway(t *testing.T) {
+	response := OneEditAway("pale", "ple")
+	if response != true {
+		t.Fatalf(`OneEditAway("pale", "ple") expect true`)
+	}
+	response = OneEditAway("pales", "pale")
+	if response != true {
+		t.Fatalf(`OneEditAway("pales", "pale") expect true`)
+	}
+	response = OneEditAway("pale", "bale")
+	if response != true {
+		t.Fatalf(`OneEditAway("pale", "bale") expect true`)
+	}
+	response = OneEditAway("pale", "bake")
+	if response != false {
+		t.Fatalf(`OneEditAway("pale", "bake") expect true`)
+	}
+	response = OneEditAway("apple", "aple")
+	if response != true {
+		t.Fatalf(`OneEditAway("apple", "aple") expect true`)
+	}
+	response = OneEditAway("aple", "apple")
+	if response != true {
+		t.Fatalf(`OneEditAway("aple", "apple") expect true`)
+	}
+	response = OneEditAway("aplese", "apple")
+	if response != false {
+		t.Fatalf(`OneEditAway("aplese", "apple") expect true`)
+	}
+	response = OneEditAway("apleses", "apple")
+	if response != false {
+		t.Fatalf(`OneEditAway("apleses", "apple") expect true`)
+	}
+	response = OneEditAway("apple", "apleses")
+	if response != false {
+		t.Fatalf(`OneEditAway("apple", "apleses") expect true`)
+	}
+}
