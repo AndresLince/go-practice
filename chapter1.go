@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"strconv"
 	"strings"
 )
 
@@ -182,4 +183,33 @@ func validateOneInsert(word1, word2 string) bool {
 	}
 
 	return true
+}
+
+/*
+	String Compression: Implement a method to perform basic string compression
+	using the counts of repeated characters. For example, the string
+	aabcccccaaa would become a2blc5a3. If the "compressed" string would not
+	become smaller than the original string, your method should return the
+	original string. You can assume the string has only uppercase and lowercase
+	letters (a - z).
+*/
+
+func StringCompression(word string) string {
+	newString := ""
+	lastChar := word[0]
+	counter := 0
+	for _, char := range word {
+		if byte(char) != lastChar {
+			newString = newString + string(lastChar) + strconv.Itoa(counter)
+			counter = 0
+		}
+		lastChar = byte(char)
+		counter++
+	}
+	newString = newString + string(lastChar) + strconv.Itoa(counter)
+	if len(newString) < len(word) {
+		return newString
+	}
+
+	return word
 }
