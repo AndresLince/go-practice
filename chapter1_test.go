@@ -95,3 +95,18 @@ func TestOneEditAway(t *testing.T) {
 		t.Fatalf(`OneEditAway("apple", "apleses") expect true`)
 	}
 }
+
+func TestStringCompression(t *testing.T) {
+	response := StringCompression("aabccccaaa")
+	if response != "a2b1c4a3" {
+		t.Fatalf(`StringCompression("aabccccaaa") expect "a2b1c4a3"`)
+	}
+	response = StringCompression("aabbabbccccaaa")
+	if response != "a2b2a1b2c4a3" {
+		t.Fatalf(`StringCompression("aabbabbccccaaa") expect "a2b2a1b2c4a3"`)
+	}
+	response = StringCompression("aabbabbccccaaacdeal")
+	if response != "aabbabbccccaaacdeal" {
+		t.Fatalf(`StringCompression("aabbabbccccaaacdeal") expect "aabbabbccccaaacdeal"`)
+	}
+}
