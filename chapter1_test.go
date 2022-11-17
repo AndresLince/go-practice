@@ -1,6 +1,7 @@
 package main
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -108,5 +109,43 @@ func TestStringCompression(t *testing.T) {
 	response = StringCompression("aabbabbccccaaacdeal")
 	if response != "aabbabbccccaaacdeal" {
 		t.Fatalf(`StringCompression("aabbabbccccaaacdeal") expect "aabbabbccccaaacdeal"`)
+	}
+}
+
+func TestRotateMatriz(t *testing.T) {
+	matrix := Nums{
+		[]int{1, 2, 3, 4},
+		[]int{5, 6, 7, 8},
+		[]int{9, 10, 11, 12},
+		[]int{13, 14, 15, 16},
+	}
+	correctResult := Nums{
+		[]int{13, 9, 5, 1},
+		[]int{14, 10, 6, 2},
+		[]int{15, 11, 7, 3},
+		[]int{16, 12, 8, 4},
+	}
+
+	response := RotateMatrix(matrix)
+	if !reflect.DeepEqual(response, correctResult) {
+		t.Fatalf(`RotateMatrix(matrix) expect a valid matriz`)
+	}
+	matrix = Nums{
+		[]int{1, 2, 3, 4, 5},
+		[]int{6, 7, 8, 9, 10},
+		[]int{11, 12, 13, 14, 15},
+		[]int{16, 17, 18, 19, 20},
+		[]int{21, 22, 23, 24, 25},
+	}
+	correctResult = Nums{
+		[]int{21, 16, 11, 6, 1},
+		[]int{22, 17, 12, 7, 2},
+		[]int{23, 18, 13, 8, 3},
+		[]int{24, 19, 14, 9, 4},
+		[]int{25, 20, 15, 10, 5},
+	}
+	response = RotateMatrix(matrix)
+	if !reflect.DeepEqual(response, correctResult) {
+		t.Fatalf(`RotateMatrix(matrix) expect a valid matriz`)
 	}
 }
