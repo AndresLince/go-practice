@@ -15,6 +15,15 @@ func TestAppendToTail(t *testing.T) {
 	}
 }
 
+func TestPrepend(t *testing.T) {
+	linkedList := Node{2, &Node{3, nil}}
+	expectedLinkedList := Node{1, &Node{2, &Node{3, nil}}}
+	result := linkedList.Prepend(1)
+	if !reflect.DeepEqual(result, expectedLinkedList) {
+		t.Fatalf(`Prepend() expect valid linkedList`)
+	}
+}
+
 func TestDeleteNode(t *testing.T) {
 	linkedList := Node{1, &Node{2, &Node{3, &Node{4, &Node{5, &Node{6, &Node{7, nil}}}}}}}
 	expectedLinkedList := &Node{1, &Node{2, &Node{3, &Node{5, &Node{6, &Node{7, nil}}}}}}
