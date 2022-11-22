@@ -22,6 +22,15 @@ func (node *Node) AppendToTail(data int) {
 	node.next = newNode
 }
 
+func (node Node) Prepend(data int) Node {
+	newNode := Node{
+		data: data,
+		next: nil,
+	}
+	newNode.next = &node
+	return newNode
+}
+
 func (node *Node) DeleteNode(data int) *Node {
 	head := node
 	if node.data == data {
