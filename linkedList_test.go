@@ -18,8 +18,8 @@ func TestAppendToTail(t *testing.T) {
 func TestPrepend(t *testing.T) {
 	linkedList := Node{2, &Node{3, nil}}
 	expectedLinkedList := Node{1, &Node{2, &Node{3, nil}}}
-	result := linkedList.Prepend(1)
-	if !reflect.DeepEqual(result, expectedLinkedList) {
+	linkedList.Prepend(1)
+	if !reflect.DeepEqual(linkedList, expectedLinkedList) {
 		t.Fatalf(`Prepend() expect valid linkedList`)
 	}
 }
