@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 /**
 2.2
 Return Kth to Last: Implement an algorithm to find the kth to last
@@ -53,7 +57,7 @@ func DeleteMiddleNode(head Node) *Node {
  */
 func Partition(head Node, partition int) Node {
 	node := head
-	newLinkedList := Node{3, nil}
+	newLinkedList := Node{node.data, nil}
 	for node.next != nil {
 		if node.next.data < partition {
 			newLinkedList = newLinkedList.Prepend(node.next.data)
@@ -61,6 +65,58 @@ func Partition(head Node, partition int) Node {
 			newLinkedList.AppendToTail(node.next.data)
 		}
 		node = *node.next
+	}
+	return newLinkedList
+}
+
+/**
+ * 2.5
+ * Sum Lists: You have two numbers represented by a linked list, where each node contains a single
+ * digit. The digits are stored in reverse order, such that the 1 's digit is at the head of the list. Write a
+ * function that adds the two numbers and returns the sum as a linked list.
+ * EXAMPLE
+ * Input:(7-> 1 -> 6) + (5 -> 9 -> 2).That is,617 + 295.
+ * Output: 2 -> 1 -> 9. That is, 912.
+ * FOLLOW UP
+ * Suppose the digits are stored in forward order. Repeat the above problem.
+ * EXAMPLE
+ * lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
+ * Output: 9 -> 1 -> 2. That is, 912.
+ */
+func SumLists(list1 *Node, list2 *Node) Node {
+	var s []int
+	carry := 0
+
+	for list1 != nil && list2 != nil {
+		fmt.Println(list1.data, list2.data)
+
+		result := list1.data + list2.data + carry
+		carryover := result % 10
+		if carryover > 0 && result > 10 {
+			s = append(s, carryover)
+			carry = 1
+		} else {
+			s = append(s, result)
+			carry = 0
+		}
+		fmt.Println("carryover", carryover)
+		list1 = list1.next
+		list2 = list2.next
+	}
+	if carry > 0 {
+		s = append(s, carry)
+	}
+	fmt.Println(s, carry)
+	return ArrayToList(s)
+}
+
+func ArrayToList(array []int) Node {
+	newLinkedList := Node{array[0], nil}
+	for i, v := range array {
+		if i == 0 {
+			continue
+		}
+		newLinkedList.AppendToTail(v)
 	}
 	return newLinkedList
 }
