@@ -60,7 +60,7 @@ func Partition(head Node, partition int) Node {
 	newLinkedList := Node{node.data, nil}
 	for node.next != nil {
 		if node.next.data < partition {
-			newLinkedList = newLinkedList.Prepend(node.next.data)
+			newLinkedList.Prepend(node.next.data)
 		} else {
 			newLinkedList.AppendToTail(node.next.data)
 		}
