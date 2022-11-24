@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node struct {
 	data int
@@ -22,13 +24,22 @@ func (node *Node) AppendToTail(data int) {
 	node.next = newNode
 }
 
-func (node Node) Prepend(data int) Node {
-	newNode := Node{
-		data: data,
-		next: nil,
+func (node *Node) Prepend(data int) {
+	newNode := Node{}
+	newNode.data = data
+
+	if node == nil {
+		*node = newNode
+		return
 	}
-	newNode.next = &node
-	return newNode
+	head := node
+	newNode.AppendToTail(node.data)
+	for head.next != nil {
+		newNode.AppendToTail(head.next.data)
+		head = head.next
+	}
+
+	*node = newNode
 }
 
 func (node *Node) DeleteNode(data int) *Node {
