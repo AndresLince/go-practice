@@ -31,3 +31,20 @@ func TestPartition(t *testing.T) {
 		t.Fatalf(`Partition() expect valid linkedList`)
 	}
 }
+
+func TestSumLists(t *testing.T) {
+	linkedList1 := Node{4, &Node{3, &Node{4, nil}}}
+	linkedList2 := Node{1, &Node{4, nil}}
+	expectedLinkedList := Node{4, &Node{4, &Node{8, nil}}}
+	result := SumLists(linkedList1, linkedList2)
+	if !reflect.DeepEqual(result, expectedLinkedList) {
+		t.Fatalf(`TestSumLists() expect valid linkedList`)
+	}
+	linkedList1 = Node{7, &Node{1, &Node{6, nil}}}
+	linkedList2 = Node{5, &Node{9, &Node{2, nil}}}
+	expectedLinkedList = Node{2, &Node{1, &Node{9, nil}}}
+	result = SumLists(linkedList1, linkedList2)
+	if !reflect.DeepEqual(result, expectedLinkedList) {
+		t.Fatalf(`TestSumLists() expect valid linkedList`)
+	}
+}
