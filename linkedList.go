@@ -76,3 +76,14 @@ func (node *Node) Length() int {
 	}
 	return counter
 }
+
+func (node *Node) Revert() {
+	newLinkedList := Node{}
+	newLinkedList.data = node.data
+	head := node
+	for head.next != nil {
+		newLinkedList.Prepend(head.next.data)
+		head = head.next
+	}
+	*node = newLinkedList
+}
