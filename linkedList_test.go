@@ -67,3 +67,18 @@ func TestLength(t *testing.T) {
 		t.Fatalf(`Length() expect 4`)
 	}
 }
+
+func TestRevert(t *testing.T) {
+	linkedList := Node{1, &Node{2, &Node{3, &Node{4, &Node{5, &Node{6, &Node{7, nil}}}}}}}
+	expectedLinkedList := Node{7, &Node{6, &Node{5, &Node{4, &Node{3, &Node{2, &Node{1, nil}}}}}}}
+	linkedList.Revert()
+	if !reflect.DeepEqual(linkedList, expectedLinkedList) {
+		t.Fatalf(`Revert() expect a valid linked list`)
+	}
+	linkedList = Node{3, &Node{2, &Node{1, nil}}}
+	expectedLinkedList = Node{1, &Node{2, &Node{3, nil}}}
+	linkedList.Revert()
+	if !reflect.DeepEqual(linkedList, expectedLinkedList) {
+		t.Fatalf(`Revert() expect a valid linked list`)
+	}
+}
