@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"math"
 )
 
 /**
@@ -83,14 +83,18 @@ func Partition(head Node, partition int) Node {
  * lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
  * Output: 9 -> 1 -> 2. That is, 912.
  */
-func SumLists(list1 *Node, list2 *Node) Node {
+func SumLists(list1 Node, list2 Node) Node {
+	newList1 := &list1
+	newList2 := &list2
+
+	AddZeros(newList1, newList2)
+
 	var s []int
 	carry := 0
 
-	for list1 != nil && list2 != nil {
-		fmt.Println(list1.data, list2.data)
+	for newList1 != nil && newList2 != nil {
 
-		result := list1.data + list2.data + carry
+		result := newList1.data + newList2.data + carry
 		carryover := result % 10
 		if carryover > 0 && result > 10 {
 			s = append(s, carryover)
@@ -99,14 +103,14 @@ func SumLists(list1 *Node, list2 *Node) Node {
 			s = append(s, result)
 			carry = 0
 		}
-		fmt.Println("carryover", carryover)
-		list1 = list1.next
-		list2 = list2.next
+
+		newList1 = newList1.next
+		newList2 = newList2.next
 	}
 	if carry > 0 {
 		s = append(s, carry)
 	}
-	fmt.Println(s, carry)
+
 	return ArrayToList(s)
 }
 
@@ -119,4 +123,22 @@ func ArrayToList(array []int) Node {
 		newLinkedList.AppendToTail(v)
 	}
 	return newLinkedList
+}
+
+func AddZeros(list1 *Node, list2 *Node) {
+	length1 := list1.Length()
+	length2 := list2.Length()
+
+	difference := math.Abs(float64((length1 - length2)))
+	if difference > 0 {
+		if length1 > length2 {
+			for i := 0; i < int(difference); i++ {
+				list2.Prepend(0)
+			}
+		} else {
+			for i := 0; i < int(difference); i++ {
+				list1.Prepend(0)
+			}
+		}
+	}
 }
