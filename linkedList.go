@@ -64,3 +64,15 @@ func (node *Node) Print() {
 	}
 	fmt.Println(node)
 }
+
+func (node *Node) Length() int {
+	if node == nil {
+		return 0
+	}
+	counter := 1
+	for node.next != nil {
+		node = node.next
+		counter++
+	}
+	return counter
+}
