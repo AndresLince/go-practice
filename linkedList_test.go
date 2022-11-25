@@ -49,3 +49,21 @@ func TestDeleteNode(t *testing.T) {
 		t.Fatalf(`DeleteNode() expect valid linkedList`)
 	}
 }
+
+func TestLength(t *testing.T) {
+	linkedList := Node{1, &Node{2, &Node{3, &Node{4, &Node{5, &Node{6, &Node{7, nil}}}}}}}
+	result := linkedList.Length()
+	if result != 7 {
+		t.Fatalf(`Length() expect 7`)
+	}
+	linkedList = Node{}
+	result = linkedList.Length()
+	if result != 1 {
+		t.Fatalf(`Length() expect 1`)
+	}
+	linkedList = Node{5, &Node{4, &Node{3, &Node{2, nil}}}}
+	result = linkedList.Length()
+	if result != 4 {
+		t.Fatalf(`Length() expect 4`)
+	}
+}
