@@ -83,11 +83,11 @@ func Partition(head Node, partition int) Node {
  * lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
  * Output: 9 -> 1 -> 2. That is, 912.
  */
-func SumLists(list1 Node, list2 Node) Node {
+func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Node {
 	newList1 := &list1
 	newList2 := &list2
 
-	AddZeros(newList1, newList2)
+	AddZeros(newList1, newList2, linkedListStrategy)
 
 	var s []int
 	carry := 0
@@ -111,34 +111,34 @@ func SumLists(list1 Node, list2 Node) Node {
 		s = append(s, carry)
 	}
 
-	return ArrayToList(s)
+	return ArrayToList(s, linkedListStrategy)
 }
 
-func ArrayToList(array []int) Node {
+func ArrayToList(array []int, linkedListStrategy linkedListStrategy) Node {
 	newLinkedList := Node{array[0], nil}
 	for i, v := range array {
 		if i == 0 {
 			continue
 		}
-		newLinkedList.AppendToTail(v)
+		linkedListStrategy.AddToLinkedListResult(&newLinkedList, v)
 	}
 	return newLinkedList
 }
 
-func AddZeros(list1 *Node, list2 *Node) {
+func AddZeros(list1 *Node, list2 *Node, linkedListStrategy linkedListStrategy) {
 	length1 := list1.Length()
 	length2 := list2.Length()
 
 	difference := math.Abs(float64((length1 - length2)))
-	if difference > 0 {
-		if length1 > length2 {
-			for i := 0; i < int(difference); i++ {
-				list2.Prepend(0)
-			}
-		} else {
-			for i := 0; i < int(difference); i++ {
-				list1.Prepend(0)
-			}
-		}
+	if difference > 0 && length1 > length2 {
+		AddNumberToLinkedList(list2, int(difference), 0, linkedListStrategy)
+	}
+	if difference > 0 && length1 < length2 {
+		AddNumberToLinkedList(list1, int(difference), 0, linkedListStrategy)
+	}
+}
+func AddNumberToLinkedList(list1 *Node, numberOfZeros int, number int, linkedListStrategy linkedListStrategy) {
+	for i := 0; i < int(numberOfZeros); i++ {
+		linkedListStrategy.AddToLinkedList(list1, number)
 	}
 }
