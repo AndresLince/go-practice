@@ -142,3 +142,12 @@ func AddNumberToLinkedList(list1 *Node, numberOfZeros int, number int, linkedLis
 		linkedListStrategy.AddToLinkedList(list1, number)
 	}
 }
+
+func SumListsForwardOrder(list1 Node, list2 Node) Node {
+	list1.Revert()
+	list2.Revert()
+
+	NewLinkedListAdder := NewLinkedListAdder(LinkedListAppendToTailAdder{})
+
+	return SumLists(list1, list2, *NewLinkedListAdder)
+}
