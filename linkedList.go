@@ -58,6 +58,7 @@ func (node *Node) DeleteNode(data int) *Node {
 }
 
 func (node *Node) Print() {
+	fmt.Println("--------------------")
 	for node.next != nil {
 		fmt.Println(node)
 		node = node.next
