@@ -61,8 +61,24 @@ func TestSumLists(t *testing.T) {
 	linkedList2 = Node{5, &Node{9, &Node{2, nil}}}
 	expectedLinkedList = Node{9, &Node{1, &Node{2, nil}}}
 	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
-	result.Print()
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`SumLists() expect valid linkedList`)
+	}
+}
+
+func TestSumListsForwardOrder(t *testing.T) {
+	linkedList1 := Node{1, &Node{3, &Node{4, nil}}}
+	linkedList2 := Node{1, &Node{4, nil}}
+	expectedLinkedList := Node{1, &Node{4, &Node{8, nil}}}
+	result := SumListsForwardOrder(linkedList1, linkedList2)
+	if !reflect.DeepEqual(result, expectedLinkedList) {
+		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
+	}
+	linkedList1 = Node{6, &Node{1, &Node{7, nil}}}
+	linkedList2 = Node{2, &Node{9, &Node{5, nil}}}
+	expectedLinkedList = Node{9, &Node{1, &Node{2, nil}}}
+	result = SumListsForwardOrder(linkedList1, linkedList2)
+	if !reflect.DeepEqual(result, expectedLinkedList) {
+		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
 	}
 }
