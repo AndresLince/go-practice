@@ -87,7 +87,7 @@ func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Nod
 	newList1 := &list1
 	newList2 := &list2
 
-	AddZeros(newList1, newList2, linkedListStrategy)
+	AddZeros(newList1, newList2)
 
 	var s []int
 	carry := 0
@@ -125,21 +125,21 @@ func ArrayToList(array []int, linkedListStrategy linkedListStrategy) Node {
 	return newLinkedList
 }
 
-func AddZeros(list1 *Node, list2 *Node, linkedListStrategy linkedListStrategy) {
+func AddZeros(list1 *Node, list2 *Node) {
 	length1 := list1.Length()
 	length2 := list2.Length()
 
 	difference := math.Abs(float64((length1 - length2)))
 	if difference > 0 && length1 > length2 {
-		AddNumberToLinkedList(list2, int(difference), 0, linkedListStrategy)
+		AddNumberToLinkedList(list2, int(difference), 0)
 	}
 	if difference > 0 && length1 < length2 {
-		AddNumberToLinkedList(list1, int(difference), 0, linkedListStrategy)
+		AddNumberToLinkedList(list1, int(difference), 0)
 	}
 }
-func AddNumberToLinkedList(list1 *Node, numberOfZeros int, number int, linkedListStrategy linkedListStrategy) {
+func AddNumberToLinkedList(list1 *Node, numberOfZeros int, number int) {
 	for i := 0; i < int(numberOfZeros); i++ {
-		linkedListStrategy.AddToLinkedList(list1, number)
+		list1.AppendToTail(number)
 	}
 }
 
