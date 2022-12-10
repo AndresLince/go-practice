@@ -2,6 +2,7 @@ package main
 
 import (
 	"math"
+	"strings"
 )
 
 /**
@@ -150,4 +151,24 @@ func SumListsForwardOrder(list1 Node, list2 Node) Node {
 	NewLinkedListAdder := NewLinkedListAdder(LinkedListAppendToTailAdder{})
 
 	return SumLists(list1, list2, *NewLinkedListAdder)
+}
+
+/**
+ * 2.6
+ * Palindrome: Implement a function to check if a linked list is a
+ * palindrome
+ */
+
+func IsPalindrome(list *Node) bool {
+	node := &Node{data: list.data, next: list.next}
+	list.Revert()
+	for list != nil {
+		if !strings.EqualFold(strings.ToLower(node.data.(string)), strings.ToLower(list.data.(string))) {
+			return false
+		}
+		list = list.next
+		node = node.next
+	}
+
+	return true
 }
