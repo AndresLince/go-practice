@@ -96,3 +96,20 @@ func TestSumListsForwardOrder(t *testing.T) {
 		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
 	}
 }
+
+func TestIsPalindrome(t *testing.T) {
+	linkedList := &Node{"D", &Node{"a", &Node{"b", &Node{"a", &Node{"l",
+		&Node{"e", &Node{"a", &Node{"r", &Node{"r", &Node{"o", &Node{"z",
+			&Node{"a", &Node{"l", &Node{"a", &Node{"z", &Node{"o",
+				&Node{"r", &Node{"r", &Node{"a", &Node{"e", &Node{"l",
+					&Node{"a", &Node{"b", &Node{"a", &Node{"d", nil}}}}}}}}}}}}}}}}}}}}}}}}}
+	result := IsPalindrome(linkedList)
+	if result != true {
+		t.Fatalf(`TestIsPalindrome() expect true`)
+	}
+	linkedList = &Node{"P", &Node{"e", &Node{"r", &Node{"r", &Node{"o", nil}}}}}
+	result = IsPalindrome(linkedList)
+	if result != false {
+		t.Fatalf(`TestIsPalindrome() expect false`)
+	}
+}
