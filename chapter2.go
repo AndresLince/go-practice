@@ -59,7 +59,7 @@ func Partition(head Node, partition int) Node {
 	node := head
 	newLinkedList := Node{node.data, nil}
 	for node.next != nil {
-		if node.next.data < partition {
+		if node.next.data.(int) < partition {
 			newLinkedList.Prepend(node.next.data)
 		} else {
 			newLinkedList.AppendToTail(node.next.data)
@@ -94,7 +94,7 @@ func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Nod
 
 	for newList1 != nil && newList2 != nil {
 
-		result := newList1.data + newList2.data + carry
+		result := newList1.data.(int) + newList2.data.(int) + carry
 		carryover := result % 10
 		if carryover > 0 && result > 10 {
 			s = append(s, carryover)
