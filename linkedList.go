@@ -5,11 +5,11 @@ import (
 )
 
 type Node struct {
-	data int
+	data interface{}
 	next *Node
 }
 
-func (node *Node) AppendToTail(data int) {
+func (node *Node) AppendToTail(data interface{}) {
 	newNode := &Node{
 		data: data,
 		next: nil,
@@ -24,7 +24,7 @@ func (node *Node) AppendToTail(data int) {
 	node.next = newNode
 }
 
-func (node *Node) Prepend(data int) {
+func (node *Node) Prepend(data interface{}) {
 	newNode := Node{}
 	newNode.data = data
 
@@ -42,7 +42,7 @@ func (node *Node) Prepend(data int) {
 	*node = newNode
 }
 
-func (node *Node) DeleteNode(data int) *Node {
+func (node *Node) DeleteNode(data interface{}) *Node {
 	head := node
 	if node.data == data {
 		return head.next
