@@ -113,3 +113,19 @@ func TestIsPalindrome(t *testing.T) {
 		t.Fatalf(`TestIsPalindrome() expect false`)
 	}
 }
+
+func TestIsIntersection(t *testing.T) {
+	intersectionNode := &Node{"d", &Node{"a", &Node{"s", nil}}}
+	linkedList1 := &Node{"d", &Node{"a", &Node{"z", intersectionNode}}}
+	linkedList2 := &Node{"p", &Node{"e", &Node{"r", &Node{"r", &Node{"o", intersectionNode}}}}}
+	result := IsIntersection(linkedList1, linkedList2)
+	if !reflect.DeepEqual(result, intersectionNode) {
+		t.Fatalf(`TestIsIntersection() expect a valid linked list`)
+	}
+	linkedList1 = &Node{"a", &Node{"b", &Node{"c", nil}}}
+	linkedList2 = &Node{"z", &Node{"b", &Node{"c", nil}}}
+	result = IsIntersection(linkedList1, linkedList2)
+	if result != nil {
+		t.Fatalf(`TestIsIntersection() expect nil`)
+	}
+}
