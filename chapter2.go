@@ -172,3 +172,26 @@ func IsPalindrome(list *Node) bool {
 
 	return true
 }
+
+/**
+ * 2.7
+ * Intersection: Given two (singly) linked lists, determine if the two
+ * lists intersect. Return the intersecting node. Note that the
+ * intersection is defined based on reference, not value. That is, if the
+ * kth node of the first linked list is the exact same node (by reference)
+ * as the jth node of the second linked list, then they are intersecting.
+ */
+func IsIntersection(list1, list2 *Node) *Node {
+	len2 := list2.Length()
+	for list1 != nil {
+		pointer := list2
+		for i := 0; i < len2; i++ {
+			if pointer == list1 {
+				return list1
+			}
+			pointer = pointer.next
+		}
+		list1 = list1.next
+	}
+	return nil
+}
