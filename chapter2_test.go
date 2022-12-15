@@ -129,3 +129,19 @@ func TestIsIntersection(t *testing.T) {
 		t.Fatalf(`TestIsIntersection() expect nil`)
 	}
 }
+
+func TestLoopDetection(t *testing.T) {
+	linkedList := &Node{"d", &Node{"a", &Node{"z", nil}}}
+	linkedList.next.next.next = linkedList
+	result := LoopDetection(linkedList)
+	if !reflect.DeepEqual(result.next, linkedList) {
+		t.Fatalf(`TestLoopDetection() expect a valid linked list`)
+	}
+	tail := &Node{"d", &Node{"a", &Node{"z", nil}}}
+	linkedList = &Node{"d", &Node{"a", &Node{"z", nil}}}
+	linkedList.next.next.next = tail
+	result = LoopDetection(linkedList)
+	if result != nil {
+		t.Fatalf(`TestIsIntersection() expect nil`)
+	}
+}
