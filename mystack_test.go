@@ -52,6 +52,10 @@ func TestPop(t *testing.T) {
 	if stack.Peek() != nil {
 		t.Fatalf(`TestPeek() expect nil`)
 	}
+	stack.Pop()
+	if stack.Peek() != nil {
+		t.Fatalf(`TestPeek() expect nil`)
+	}
 }
 func TestPush(t *testing.T) {
 	stack := MyStack{}
