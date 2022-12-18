@@ -15,13 +15,13 @@ func (stack *MyStack) Push(data interface{}) {
 	stack.top = item
 }
 
-func (stack *MyStack) Pop() (bool, interface{}) {
+func (stack *MyStack) Pop() interface{} {
 	if stack.top == nil {
-		return true, nil
+		return nil
 	}
 	data := stack.top.data
 	stack.top = stack.top.next
-	return false, data
+	return data
 }
 
 func (stack *MyStack) Peek() interface{} {
