@@ -34,6 +34,10 @@ func CheckPermutation(word1, word2 string) bool {
 	if string1Length != string2Length {
 		return false
 	}
+
+	if string1Length == 0 {
+		return false
+	}
 	var letters = make(map[rune]int)
 	for _, char := range word1 {
 		if letters[char] != 0 {
