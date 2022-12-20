@@ -26,6 +26,18 @@ func TestCheckPermutation(t *testing.T) {
 	if response != false {
 		t.Fatalf(`CheckPermutation("algoa", "algo") expect false`)
 	}
+	response = CheckPermutation("", "")
+	if response != false {
+		t.Fatalf(`CheckPermutation("", "") expect false`)
+	}
+	response = CheckPermutation("Dabale arroz a la zorra el abad", "Dabale arroz a la zorra el abad")
+	if response != false {
+		t.Fatalf(`CheckPermutation("", "") expect false`)
+	}
+	response = CheckPermutation("avc", "ase")
+	if response != false {
+		t.Fatalf(`CheckPermutation("abcdef", "abcdef") expect false`)
+	}
 }
 
 func TestUrlify(t *testing.T) {
