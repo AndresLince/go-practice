@@ -14,9 +14,6 @@ func (node *Node) AppendToTail(data interface{}) {
 		data: data,
 		next: nil,
 	}
-	if node == nil {
-		return
-	}
 
 	for node.next != nil {
 		node = node.next
@@ -28,10 +25,6 @@ func (node *Node) Prepend(data interface{}) {
 	newNode := Node{}
 	newNode.data = data
 
-	if node == nil {
-		*node = newNode
-		return
-	}
 	head := node
 	newNode.AppendToTail(node.data)
 	for head.next != nil {
@@ -67,9 +60,6 @@ func (node *Node) Print() {
 }
 
 func (node *Node) Length() int {
-	if node == nil {
-		return 0
-	}
 	counter := 1
 	for node.next != nil {
 		node = node.next
