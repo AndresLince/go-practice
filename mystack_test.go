@@ -72,3 +72,23 @@ func TestPush(t *testing.T) {
 		t.Fatalf(`TestPeek() expect 3`)
 	}
 }
+
+func TestGetMinStack(t *testing.T) {
+	stack := MyStack{}
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+	stack.Pop()
+	stack.Push(4)
+	if stack.GetMin().data != 1 {
+		t.Fatalf(`GetMin() expect 1`)
+	}
+	stack = MyStack{}
+	stack.Push(3)
+	stack.Push(4)
+	stack.Push(1)
+	stack.Pop()
+	if stack.GetMin().data != 3 {
+		t.Fatalf(`GetMin() expect 3`)
+	}
+}
