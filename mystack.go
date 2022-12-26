@@ -24,12 +24,12 @@ func (stack *MyStack) Pop() interface{} {
 		return nil
 	}
 	data := stack.top.data
-	if stack.min != nil && stack.min.data == data {
-		stack.min = stack.top.GetMin()
-	}
 	stack.top = stack.top.next
 	if stack.top == nil {
 		stack.min = nil
+	}
+	if stack.min != nil && stack.min.data == data {
+		stack.min = stack.top.GetMin()
 	}
 
 	return data
