@@ -78,3 +78,16 @@ func (node *Node) Revert() {
 	}
 	*node = newLinkedList
 }
+
+func (node *Node) GetMin() *Node {
+	head := node
+	min := node
+	for head != nil {
+		fmt.Println(head.data, min.data)
+		if head.data.(int) < min.data.(int) {
+			min = head
+		}
+		head = head.next
+	}
+	return min
+}
