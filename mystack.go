@@ -1,16 +1,11 @@
 package main
 
-type MyStackNode struct {
-	data interface{}
-	next *MyStackNode
-}
-
 type MyStack struct {
-	top *MyStackNode
+	top *Node
 }
 
 func (stack *MyStack) Push(data interface{}) {
-	item := &MyStackNode{data, nil}
+	item := &Node{data, nil}
 	item.next = stack.top
 	stack.top = item
 }
