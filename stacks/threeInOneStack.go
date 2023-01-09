@@ -48,7 +48,7 @@ func NewThreeInOneStack(length int) *ThreeInOneStack {
 
 func (threeInOneStack *ThreeInOneStack) Push(stack int, data interface{}) error {
 	if threeInOneStack.arrayCurrentPosition[stack] > threeInOneStack.arrayLastPosition[stack] {
-		return errors.New("full stack")
+		return errors.New("full_stack")
 	}
 	currentIndex := threeInOneStack.arrayCurrentPosition[stack]
 	threeInOneStack.array = append(threeInOneStack.array[:currentIndex], threeInOneStack.array[currentIndex:]...) // currentIndex < len(a)
@@ -57,15 +57,15 @@ func (threeInOneStack *ThreeInOneStack) Push(stack int, data interface{}) error 
 	return nil
 }
 
-func (threeInOneStack *ThreeInOneStack) Pop(stack int, data interface{}) (interface{}, error) {
+func (threeInOneStack *ThreeInOneStack) Pop(stack int) (interface{}, error) {
 	if threeInOneStack.arrayCurrentPosition[stack] == threeInOneStack.arrayStartPosition[stack] {
-		return nil, errors.New("empty stack")
+		return nil, errors.New("empty_stack")
 	}
 	threeInOneStack.arrayCurrentPosition[stack]--
 	return threeInOneStack.array[threeInOneStack.arrayCurrentPosition[stack]], nil
 }
 
-func (threeInOneStack ThreeInOneStack) IsEmpty(stack int, data interface{}) bool {
+func (threeInOneStack ThreeInOneStack) IsEmpty(stack int) bool {
 	return threeInOneStack.arrayCurrentPosition[stack] == threeInOneStack.arrayStartPosition[stack]
 }
 
