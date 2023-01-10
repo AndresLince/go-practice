@@ -92,3 +92,18 @@ func TestGetMinStack(t *testing.T) {
 		t.Fatalf(`GetMin() expect 3`)
 	}
 }
+
+func TestLengthStack(t *testing.T) {
+	stack := MyStack{}
+	if stack.Length() != 0 {
+		t.Fatalf(`Length() expect 0`)
+	}
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+	stack.Push(4)
+	stack.Push(5)
+	if stack.Length() != 5 {
+		t.Fatalf(`Length() expect 5`)
+	}
+}
