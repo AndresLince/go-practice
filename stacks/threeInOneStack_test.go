@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestIsEmpty(t *testing.T) {
+func TestIsEmptyThreeInOneStack(t *testing.T) {
 	stack := NewThreeInOneStack(6)
 	if stack.IsEmpty(1) != true {
 		t.Fatalf(`IsEmpty() expect true`)
@@ -16,7 +16,7 @@ func TestIsEmpty(t *testing.T) {
 	}
 }
 
-func TestPeak(t *testing.T) {
+func TestPeakThreeInOneStack(t *testing.T) {
 	stack := NewThreeInOneStack(12)
 	if stack.Peak(1) != nil {
 		t.Fatalf(`TestPeak() expect nil`)
@@ -35,7 +35,7 @@ func TestPeak(t *testing.T) {
 	}
 }
 
-func TestPop(t *testing.T) {
+func TestPopThreeInOneStack(t *testing.T) {
 	stack := NewThreeInOneStack(12)
 	stack.Push(1, 1)
 	stack.Push(1, 2)
@@ -58,7 +58,7 @@ func TestPop(t *testing.T) {
 	}
 }
 
-func TestPush(t *testing.T) {
+func TestPushThreeInOneStack(t *testing.T) {
 	stack := NewThreeInOneStack(12)
 	err := stack.Push(1, 1)
 	if ErrorContains(err, "full_stack") {
