@@ -15,23 +15,40 @@
  */
 package stacks
 
+import (
+	"errors"
+)
+
 type SetOfStacks struct {
-	stack1 MyStack
-	stack2 MyStack
-	stack3 MyStack
-	length int
+	arrayStacks  []MyStack
+	length       int
+	currentStack int
 }
 
 func NewSetOfStacks(length int) *SetOfStacks {
 	stack1 := MyStack{}
 	stack2 := MyStack{}
 	stack3 := MyStack{}
+	arrayStacks := []MyStack{
+		stack1, stack2, stack3,
+	}
 
 	sos := SetOfStacks{
-		stack1: stack1,
-		stack2: stack2,
-		stack3: stack3,
-		length: length,
+		arrayStacks:  arrayStacks,
+		length:       length,
+		currentStack: 0,
 	}
 	return &sos
+}
+
+func (setOfStacks *SetOfStacks) Push(data interface{}) error {
+	if setOfStacks.currentStack == 2 && setOfStacks.arrayStacks[setOfStacks.currentStack].Length() == setOfStacks.length {
+		return errors.New("full_stack")
+	}
+	if setOfStacks.currentStack < 2 && setOfStacks.arrayStacks[setOfStacks.currentStack].Length() == setOfStacks.length {
+		setOfStacks.currentStack++
+	}
+
+	setOfStacks.arrayStacks[setOfStacks.currentStack].Push(data)
+	return nil
 }
