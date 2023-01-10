@@ -1,4 +1,4 @@
-package main
+package linkedList
 
 // LinkedListAdder known how to Add a number
 type LinkedListAdder interface {
@@ -22,7 +22,7 @@ func (sum LinkedListAppendToTailAdder) ResultAdd(node *Node, number int) {
 	node.Prepend(number)
 }
 
-type linkedListStrategy struct {
+type LinkedListStrategy struct {
 	// LinkedListAdder is the behaviour that is encapsulated
 	// Now this LinkedListAdder is of interface type and hence
 	// can hold any concrete type.
@@ -32,13 +32,13 @@ type linkedListStrategy struct {
 }
 
 // NewLinkedListAdder returns a toy object
-func NewLinkedListAdder(dr LinkedListAdder) *linkedListStrategy {
-	return &linkedListStrategy{
+func NewLinkedListAdder(dr LinkedListAdder) *LinkedListStrategy {
+	return &LinkedListStrategy{
 		LinkedListAdder: dr,
 	}
 }
 
 // AddToLinkedList performs the addition to the result
-func (t *linkedListStrategy) AddToLinkedListResult(node *Node, number int) {
+func (t *LinkedListStrategy) AddToLinkedListResult(node *Node, number int) {
 	t.LinkedListAdder.ResultAdd(node, number)
 }

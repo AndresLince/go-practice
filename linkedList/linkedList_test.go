@@ -1,4 +1,4 @@
-package main
+package linkedList
 
 import (
 	"reflect"
@@ -91,7 +91,7 @@ func TestRevert(t *testing.T) {
 func TestGetMin(t *testing.T) {
 	linkedList := Node{5, &Node{4, &Node{3, &Node{6, &Node{7, &Node{1, &Node{2, nil}}}}}}}
 	response := linkedList.GetMin()
-	if response.data != 1 {
+	if response.Data != 1 {
 		t.Fatalf(`GetMin().data expect a valid value`)
 	}
 }
