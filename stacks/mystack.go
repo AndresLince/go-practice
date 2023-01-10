@@ -50,6 +50,13 @@ func (stack *MyStack) IsEmpty() bool {
 	return stack.top == nil
 }
 
+func (stack *MyStack) Length() int {
+	if stack.top == nil {
+		return 0
+	}
+	return stack.top.Length()
+}
+
 /**
  * 3.2
  * Stack Min: How would you design a stack which, in addition to push and
