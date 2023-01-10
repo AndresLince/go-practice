@@ -3,6 +3,8 @@ package main
 import (
 	"math"
 	"strings"
+
+	"github.com/AndresLince/go-practice/linkedList"
 )
 
 /**
@@ -10,20 +12,20 @@ import (
 Return Kth to Last: Implement an algorithm to find the kth to last
 element of a singly linked list.
 */
-func KthToLast(head Node, kth int) *Node {
+func KthToLast(head linkedList.Node, kth int) *linkedList.Node {
 	node := head
 	runner := head
 	counter := 0
-	for runner.next != nil && counter < kth {
-		runner = *runner.next
+	for runner.Next != nil && counter < kth {
+		runner = *runner.Next
 		counter++
 	}
 	if counter < kth {
 		return nil
 	}
-	for runner.next != nil {
-		node = *node.next
-		runner = *runner.next
+	for runner.Next != nil {
+		node = *node.Next
+		runner = *runner.Next
 	}
 	return &node
 }
@@ -34,14 +36,14 @@ Delete Middle Node: Implement an algorithm to delete a node in the middle
 (i.e., any node but the first and last node, not necessarily the exact
 middle) of a singly linked list, given only access to that node.
 */
-func DeleteMiddleNode(head Node) *Node {
+func DeleteMiddleNode(head linkedList.Node) *linkedList.Node {
 	node := head
 	runner := head
-	for runner.next != nil {
-		runner = *runner.next.next
-		node = *node.next
+	for runner.Next != nil {
+		runner = *runner.Next.Next
+		node = *node.Next
 	}
-	return head.DeleteNode(node.data)
+	return head.DeleteNode(node.Data)
 }
 
 /**
@@ -56,16 +58,16 @@ func DeleteMiddleNode(head Node) *Node {
  * Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition= 5]
  * Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
  */
-func Partition(head Node, partition int) Node {
+func Partition(head linkedList.Node, partition int) linkedList.Node {
 	node := head
-	newLinkedList := Node{node.data, nil}
-	for node.next != nil {
-		if node.next.data.(int) < partition {
-			newLinkedList.Prepend(node.next.data)
+	newLinkedList := linkedList.Node{node.Data, nil}
+	for node.Next != nil {
+		if node.Next.Data.(int) < partition {
+			newLinkedList.Prepend(node.Next.Data)
 		} else {
-			newLinkedList.AppendToTail(node.next.data)
+			newLinkedList.AppendToTail(node.Next.Data)
 		}
-		node = *node.next
+		node = *node.Next
 	}
 	return newLinkedList
 }
@@ -84,7 +86,7 @@ func Partition(head Node, partition int) Node {
  * lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
  * Output: 9 -> 1 -> 2. That is, 912.
  */
-func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Node {
+func SumLists(list1 linkedList.Node, list2 linkedList.Node, linkedListStrategy linkedList.LinkedListStrategy) linkedList.Node {
 	newList1 := &list1
 	newList2 := &list2
 
@@ -95,7 +97,7 @@ func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Nod
 
 	for newList1 != nil && newList2 != nil {
 
-		result := newList1.data.(int) + newList2.data.(int) + carry
+		result := newList1.Data.(int) + newList2.Data.(int) + carry
 		carryover := result % 10
 		if carryover > 0 && result > 10 {
 			s = append(s, carryover)
@@ -105,8 +107,8 @@ func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Nod
 			carry = 0
 		}
 
-		newList1 = newList1.next
-		newList2 = newList2.next
+		newList1 = newList1.Next
+		newList2 = newList2.Next
 	}
 	if carry > 0 {
 		s = append(s, carry)
@@ -115,8 +117,8 @@ func SumLists(list1 Node, list2 Node, linkedListStrategy linkedListStrategy) Nod
 	return ArrayToList(s, linkedListStrategy)
 }
 
-func ArrayToList(array []int, linkedListStrategy linkedListStrategy) Node {
-	newLinkedList := Node{array[0], nil}
+func ArrayToList(array []int, linkedListStrategy linkedList.LinkedListStrategy) linkedList.Node {
+	newLinkedList := linkedList.Node{array[0], nil}
 	for i, v := range array {
 		if i == 0 {
 			continue
@@ -126,7 +128,7 @@ func ArrayToList(array []int, linkedListStrategy linkedListStrategy) Node {
 	return newLinkedList
 }
 
-func AddZeros(list1 *Node, list2 *Node) {
+func AddZeros(list1 *linkedList.Node, list2 *linkedList.Node) {
 	length1 := list1.Length()
 	length2 := list2.Length()
 
@@ -138,17 +140,17 @@ func AddZeros(list1 *Node, list2 *Node) {
 		AddNumberToLinkedList(list1, int(difference), 0)
 	}
 }
-func AddNumberToLinkedList(list1 *Node, numberOfZeros int, number int) {
+func AddNumberToLinkedList(list1 *linkedList.Node, numberOfZeros int, number int) {
 	for i := 0; i < int(numberOfZeros); i++ {
 		list1.AppendToTail(number)
 	}
 }
 
-func SumListsForwardOrder(list1 Node, list2 Node) Node {
+func SumListsForwardOrder(list1 linkedList.Node, list2 linkedList.Node) linkedList.Node {
 	list1.Revert()
 	list2.Revert()
 
-	NewLinkedListAdder := NewLinkedListAdder(LinkedListAppendToTailAdder{})
+	NewLinkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
 
 	return SumLists(list1, list2, *NewLinkedListAdder)
 }
@@ -159,15 +161,15 @@ func SumListsForwardOrder(list1 Node, list2 Node) Node {
  * palindrome
  */
 
-func IsPalindrome(list *Node) bool {
-	node := &Node{data: list.data, next: list.next}
+func IsPalindrome(list *linkedList.Node) bool {
+	node := &linkedList.Node{Data: list.Data, Next: list.Next}
 	list.Revert()
 	for list != nil {
-		if !strings.EqualFold(strings.ToLower(node.data.(string)), strings.ToLower(list.data.(string))) {
+		if !strings.EqualFold(strings.ToLower(node.Data.(string)), strings.ToLower(list.Data.(string))) {
 			return false
 		}
-		list = list.next
-		node = node.next
+		list = list.Next
+		node = node.Next
 	}
 
 	return true
@@ -181,7 +183,7 @@ func IsPalindrome(list *Node) bool {
  * kth node of the first linked list is the exact same node (by reference)
  * as the jth node of the second linked list, then they are intersecting.
  */
-func IsIntersection(list1, list2 *Node) *Node {
+func IsIntersection(list1, list2 *linkedList.Node) *linkedList.Node {
 	len2 := list2.Length()
 	for list1 != nil {
 		pointer := list2
@@ -189,9 +191,9 @@ func IsIntersection(list1, list2 *Node) *Node {
 			if pointer == list1 {
 				return list1
 			}
-			pointer = pointer.next
+			pointer = pointer.Next
 		}
-		list1 = list1.next
+		list1 = list1.Next
 	}
 	return nil
 }
@@ -201,23 +203,23 @@ func IsIntersection(list1, list2 *Node) *Node {
  * Loop Detection: Given a circular linked list, implement an algorithm
  * that returns the node at the beginning of the loop.
  * DEFINITION
- * Circular linked list: A (corrupt) linked list in which a node's next
+ * Circular linked list: A (corrupt) linked list in which a node's Next
  * pointer points to an earlier node, so as to make a loop in the linked
  * list.
  * EXAMPLE
  * Input: A -> B -> C -> D -> E -> C [the same C as earlier]
  * Output: C
  */
-func LoopDetection(linkedList *Node) *Node {
+func LoopDetection(linkedList *linkedList.Node) *linkedList.Node {
 	if linkedList == nil {
 		return nil
 	}
 	head := linkedList
-	for linkedList.next != nil {
-		if linkedList.next == head {
+	for linkedList.Next != nil {
+		if linkedList.Next == head {
 			return linkedList
 		}
-		linkedList = linkedList.next
+		linkedList = linkedList.Next
 	}
 	return nil
 }
