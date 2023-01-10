@@ -1,4 +1,4 @@
-package main
+package stacks
 
 import "testing"
 
@@ -80,7 +80,7 @@ func TestGetMinStack(t *testing.T) {
 	stack.Push(3)
 	stack.Pop()
 	stack.Push(4)
-	if stack.GetMin().data != 1 {
+	if stack.GetMin().Data != 1 {
 		t.Fatalf(`GetMin() expect 1`)
 	}
 	stack = MyStack{}
@@ -88,7 +88,7 @@ func TestGetMinStack(t *testing.T) {
 	stack.Push(4)
 	stack.Push(1)
 	stack.Pop()
-	if stack.GetMin().data != 3 {
+	if stack.GetMin().Data != 3 {
 		t.Fatalf(`GetMin() expect 3`)
 	}
 }
