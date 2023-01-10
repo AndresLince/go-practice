@@ -12,7 +12,7 @@ type MyStack struct {
 }
 
 func (stack *MyStack) Push(data interface{}) {
-	item := &linkedList.Node{data, nil}
+	item := &linkedList.Node{Data: data, Next: nil}
 	item.Next = stack.top
 	stack.top = item
 	if stack.min != nil && stack.top.Data.(int) < stack.min.Data.(int) {
