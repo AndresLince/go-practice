@@ -60,7 +60,7 @@ func DeleteMiddleNode(head linkedList.Node) *linkedList.Node {
  */
 func Partition(head linkedList.Node, partition int) linkedList.Node {
 	node := head
-	newLinkedList := linkedList.Node{node.Data, nil}
+	newLinkedList := linkedList.Node{Data: node.Data, Next: nil}
 	for node.Next != nil {
 		if node.Next.Data.(int) < partition {
 			newLinkedList.Prepend(node.Next.Data)
@@ -118,7 +118,7 @@ func SumLists(list1 linkedList.Node, list2 linkedList.Node, linkedListStrategy l
 }
 
 func ArrayToList(array []int, linkedListStrategy linkedList.LinkedListStrategy) linkedList.Node {
-	newLinkedList := linkedList.Node{array[0], nil}
+	newLinkedList := linkedList.Node{Data: array[0], Next: nil}
 	for i, v := range array {
 		if i == 0 {
 			continue
