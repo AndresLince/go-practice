@@ -150,7 +150,7 @@ func SumListsForwardOrder(list1 linkedList.Node, list2 linkedList.Node) linkedLi
 	list1.Revert()
 	list2.Revert()
 
-	NewLinkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
+	NewLinkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListPrependAdder{})
 
 	return SumLists(list1, list2, *NewLinkedListAdder)
 }
