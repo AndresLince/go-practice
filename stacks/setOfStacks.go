@@ -52,3 +52,23 @@ func (setOfStacks *SetOfStacks) Push(data interface{}) error {
 	setOfStacks.arrayStacks[setOfStacks.currentStack].Push(data)
 	return nil
 }
+
+func (setOfStacks *SetOfStacks) Pop() (interface{}, error) {
+	if setOfStacks.currentStack == 0 && setOfStacks.arrayStacks[setOfStacks.currentStack].Length() == 0 {
+		return nil, errors.New("empty_stack")
+	}
+	data := setOfStacks.arrayStacks[setOfStacks.currentStack].Pop()
+	if setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() && setOfStacks.currentStack > 0 {
+		setOfStacks.currentStack--
+	}
+
+	return data, nil
+}
+
+func (setOfStacks *SetOfStacks) IsEmpty() bool {
+	return setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty()
+}
+
+func (setOfStacks *SetOfStacks) Peak() interface{} {
+	return setOfStacks.arrayStacks[setOfStacks.currentStack].Peek()
+}
