@@ -223,3 +223,19 @@ func LoopDetection(linkedList *linkedList.Node) *linkedList.Node {
 	}
 	return nil
 }
+
+/**
+ * ----------------------------------------------------------------------------
+ */
+func CreateIncrementalNumberLinkedList(start int, end int) linkedList.Node {
+	if start > end {
+		return linkedList.Node{}
+	}
+	node := linkedList.Node{Data: start, Next: nil}
+	start++
+	for start <= end {
+		node.AppendToTail(start)
+		start++
+	}
+	return node
+}
