@@ -54,7 +54,7 @@ func (setOfStacks *SetOfStacks) Push(data interface{}) error {
 }
 
 func (setOfStacks *SetOfStacks) Pop() (interface{}, error) {
-	if setOfStacks.currentStack == 0 && setOfStacks.arrayStacks[setOfStacks.currentStack].Length() == 0 {
+	if setOfStacks.currentStack == 0 && setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() {
 		return nil, errors.New("empty_stack")
 	}
 	if setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() && setOfStacks.currentStack > 0 {
