@@ -147,3 +147,27 @@ func TestLoopDetection(t *testing.T) {
 		t.Fatalf(`TestIsIntersection() expect nil`)
 	}
 }
+
+func TestIncrementalNumberLinkedList(t *testing.T) {
+	expectedLinkedList := linkedList.Node{Data: 1, Next: nil}
+	expectedLinkedList.AppendToTail(2)
+	expectedLinkedList.AppendToTail(3)
+	expectedLinkedList.AppendToTail(4)
+	expectedLinkedList.AppendToTail(5)
+	expectedLinkedList.AppendToTail(6)
+	expectedLinkedList.AppendToTail(7)
+
+	response := CreateIncrementalNumberLinkedList(1, 7)
+	if !reflect.DeepEqual(response, expectedLinkedList) {
+		t.Fatalf(`CreateIncrementalNumberLinkedList(linkedList, 2) expect a valid linked list`)
+	}
+	response = CreateIncrementalNumberLinkedList(4, 2)
+	if !reflect.DeepEqual(response, linkedList.Node{}) {
+		t.Fatalf(`CreateIncrementalNumberLinkedList(linkedList, 2) expect a valid linked list`)
+	}
+	expectedLinkedList = linkedList.Node{Data: 6, Next: nil}
+	response = CreateIncrementalNumberLinkedList(6, 6)
+	if !reflect.DeepEqual(response, expectedLinkedList) {
+		t.Fatalf(`CreateIncrementalNumberLinkedList(linkedList, 2) expect a valid linked list`)
+	}
+}
