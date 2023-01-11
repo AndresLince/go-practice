@@ -41,7 +41,7 @@ func TestSumLists(t *testing.T) {
 	linkedList1 := linkedList.Node{4, &linkedList.Node{3, &linkedList.Node{4, nil}}}
 	linkedList2 := linkedList.Node{1, &linkedList.Node{4, nil}}
 	expectedLinkedList := linkedList.Node{5, &linkedList.Node{7, &linkedList.Node{4, nil}}}
-	linkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListPrependAdder{})
+	linkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
 	result := SumLists(linkedList1, linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
@@ -68,7 +68,7 @@ func TestSumLists(t *testing.T) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
 	}
 
-	linkedListAdder = linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
+	linkedListAdder = linkedList.NewLinkedListAdder(linkedList.LinkedListPrependAdder{})
 	linkedList1 = linkedList.Node{4, &linkedList.Node{3, &linkedList.Node{1, nil}}}
 	linkedList2 = linkedList.Node{4, &linkedList.Node{1, nil}}
 	expectedLinkedList = linkedList.Node{1, &linkedList.Node{4, &linkedList.Node{8, nil}}}
