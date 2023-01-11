@@ -57,6 +57,10 @@ func (setOfStacks *SetOfStacks) Pop() (interface{}, error) {
 	if setOfStacks.currentStack == 0 && setOfStacks.arrayStacks[setOfStacks.currentStack].Length() == 0 {
 		return nil, errors.New("empty_stack")
 	}
+	if setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() && setOfStacks.currentStack > 0 {
+		setOfStacks.currentStack--
+		return setOfStacks.Pop()
+	}
 	data := setOfStacks.arrayStacks[setOfStacks.currentStack].Pop()
 	if setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() && setOfStacks.currentStack > 0 {
 		setOfStacks.currentStack--
@@ -71,4 +75,11 @@ func (setOfStacks *SetOfStacks) IsEmpty() bool {
 
 func (setOfStacks *SetOfStacks) Peak() interface{} {
 	return setOfStacks.arrayStacks[setOfStacks.currentStack].Peek()
+}
+
+func (setOfStacks SetOfStacks) PopAt(stackNumber int) interface{} {
+	if setOfStacks.arrayStacks[setOfStacks.currentStack].IsEmpty() {
+		return nil
+	}
+	return setOfStacks.arrayStacks[stackNumber].Pop()
 }
