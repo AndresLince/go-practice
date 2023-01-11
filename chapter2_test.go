@@ -8,19 +8,22 @@ import (
 )
 
 func TestKthToLast(t *testing.T) {
-	newLinkedList := linkedList.Node{1, &linkedList.Node{2, &linkedList.Node{3, &linkedList.Node{4, &linkedList.Node{5, &linkedList.Node{6, &linkedList.Node{7, nil}}}}}}}
-	expectedLinkedList := &linkedList.Node{5, &linkedList.Node{6, &linkedList.Node{7, nil}}}
+	newLinkedList := CreateIncrementalNumberLinkedList(1, 7)
+	expectedLinkedList := CreateIncrementalNumberLinkedList(5, 7)
 	response := KthToLast(newLinkedList, 2)
-	if !reflect.DeepEqual(response, expectedLinkedList) {
+	if !reflect.DeepEqual(response, &expectedLinkedList) {
 		t.Fatalf(`KthToLast(linkedList, 2) expect a valid linked list`)
 	}
 }
 
 func TestDeleteMiddleNode(t *testing.T) {
-	newLinkedList := linkedList.Node{1, &linkedList.Node{2, &linkedList.Node{3, &linkedList.Node{4, &linkedList.Node{5, &linkedList.Node{6, &linkedList.Node{7, nil}}}}}}}
-	expectedLinkedList := &linkedList.Node{1, &linkedList.Node{2, &linkedList.Node{3, &linkedList.Node{5, &linkedList.Node{6, &linkedList.Node{7, nil}}}}}}
+	newLinkedList := CreateIncrementalNumberLinkedList(1, 7)
+	expectedLinkedList := CreateIncrementalNumberLinkedList(1, 3)
+	expectedLinkedList.AppendToTail(5)
+	expectedLinkedList.AppendToTail(6)
+	expectedLinkedList.AppendToTail(7)
 	result := DeleteMiddleNode(newLinkedList)
-	if !reflect.DeepEqual(result, expectedLinkedList) {
+	if !reflect.DeepEqual(result, &expectedLinkedList) {
 		t.Fatalf(`DeleteMiddleNode() expect valid linkedList`)
 	}
 }
