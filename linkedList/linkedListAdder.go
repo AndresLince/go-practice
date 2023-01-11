@@ -11,7 +11,7 @@ type LinkedListPrependAdder struct{}
 
 // ResultAdd -- LinkedListPrependAdder adds the number
 func (sum LinkedListPrependAdder) ResultAdd(node *Node, number int) {
-	node.AppendToTail(number)
+	node.Prepend(number)
 }
 
 // LinkedListAppendToTailAdder is a concrete type that implements Add
@@ -19,7 +19,7 @@ type LinkedListAppendToTailAdder struct{}
 
 // ResultAdd -- LinkedListAppendToTailAdder adds the number
 func (sum LinkedListAppendToTailAdder) ResultAdd(node *Node, number int) {
-	node.Prepend(number)
+	node.AppendToTail(number)
 }
 
 type LinkedListStrategy struct {
