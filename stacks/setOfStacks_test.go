@@ -97,3 +97,54 @@ func TestPopSetOfStacks(t *testing.T) {
 		t.Errorf("TestPopSetOfStacks expected error: %v", err)
 	}
 }
+
+func TestPushSetOfStacks(t *testing.T) {
+	stack := NewSetOfStacks(2)
+	err := stack.Push(1)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 1 {
+		t.Fatalf(`Peak() expect 1`)
+	}
+	err = stack.Push(2)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 2 {
+		t.Fatalf(`Peak() expect 2`)
+	}
+	err = stack.Push(3)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 3 {
+		t.Fatalf(`Peak() expect 3`)
+	}
+	err = stack.Push(4)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 4 {
+		t.Fatalf(`Peak() expect 4`)
+	}
+	err = stack.Push(5)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 5 {
+		t.Fatalf(`Peak() expect 5`)
+	}
+	err = stack.Push(6)
+	if ErrorContains(err, "full_stack") {
+		t.Errorf("Push() unexpected error: %v", err)
+	}
+	if stack.Peak() != 6 {
+		t.Fatalf(`Peak() expect 6`)
+	}
+
+	err = stack.Push(7)
+	if !ErrorContains(err, "full_stack") {
+		t.Errorf("Push() expected error: %v", err)
+	}
+}
