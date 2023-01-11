@@ -148,3 +148,46 @@ func TestPushSetOfStacks(t *testing.T) {
 		t.Errorf("Push() expected error: %v", err)
 	}
 }
+
+func TestPopAt(t *testing.T) {
+	stack := NewSetOfStacks(2)
+	stack.Push(1)
+	stack.Push(2)
+	stack.Push(3)
+	stack.Push(4)
+	stack.Push(5)
+	stack.Push(6)
+	data := stack.PopAt(1)
+	if data != 4 {
+		t.Fatalf(`PopAt() expect 4`)
+	}
+	data = stack.PopAt(1)
+	if data != 3 {
+		t.Fatalf(`PopAt() expect 3`)
+	}
+	data = stack.PopAt(1)
+	if data != nil {
+		t.Fatalf(`PopAt() expect nil`)
+	}
+	data, err := stack.Pop()
+	if ErrorContains(err, "empty_stack") {
+		t.Errorf("Pop() unexpected error: %v", err)
+	}
+	if data != 6 {
+		t.Fatalf(`Pop() expect 6`)
+	}
+	data, err = stack.Pop()
+	if ErrorContains(err, "empty_stack") {
+		t.Errorf("Pop() unexpected error: %v", err)
+	}
+	if data != 5 {
+		t.Fatalf(`Pop() expect 5`)
+	}
+	data, err = stack.Pop()
+	if ErrorContains(err, "empty_stack") {
+		t.Errorf("Pop() unexpected error: %v", err)
+	}
+	if data != 2 {
+		t.Fatalf(`Pop() expect 2`)
+	}
+}
