@@ -29,8 +29,8 @@ func TestDeleteMiddleNode(t *testing.T) {
 }
 
 func TestPartition(t *testing.T) {
-	newLinkedList := linkedList.Node{3, &linkedList.Node{5, &linkedList.Node{8, &linkedList.Node{5, &linkedList.Node{10, &linkedList.Node{2, &linkedList.Node{1, nil}}}}}}}
-	expectedLinkedList := linkedList.Node{1, &linkedList.Node{2, &linkedList.Node{3, &linkedList.Node{5, &linkedList.Node{8, &linkedList.Node{5, &linkedList.Node{10, nil}}}}}}}
+	newLinkedList := ArrayToList([]int{3, 5, 8, 5, 10, 2, 1}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList := ArrayToList([]int{1, 2, 3, 5, 8, 5, 10}, *NewLinkedListAppendToTailAdder())
 	result := Partition(newLinkedList, 5)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`Partition() expect valid linkedList`)
