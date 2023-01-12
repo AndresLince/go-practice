@@ -86,16 +86,16 @@ func TestSumLists(t *testing.T) {
 }
 
 func TestSumListsForwardOrder(t *testing.T) {
-	linkedList1 := linkedList.Node{1, &linkedList.Node{3, &linkedList.Node{4, nil}}}
-	linkedList2 := linkedList.Node{1, &linkedList.Node{4, nil}}
-	expectedLinkedList := linkedList.Node{1, &linkedList.Node{4, &linkedList.Node{8, nil}}}
+	linkedList1 := ArrayToList([]int{1, 3, 4}, *NewLinkedListAppendToTailAdder())
+	linkedList2 := ArrayToList([]int{1, 4}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList := ArrayToList([]int{1, 4, 8}, *NewLinkedListAppendToTailAdder())
 	result := SumListsForwardOrder(linkedList1, linkedList2)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
 	}
-	linkedList1 = linkedList.Node{6, &linkedList.Node{1, &linkedList.Node{7, nil}}}
-	linkedList2 = linkedList.Node{2, &linkedList.Node{9, &linkedList.Node{5, nil}}}
-	expectedLinkedList = linkedList.Node{9, &linkedList.Node{1, &linkedList.Node{2, nil}}}
+	linkedList1 = ArrayToList([]int{6, 1, 7}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]int{2, 9, 5}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]int{9, 1, 2}, *NewLinkedListAppendToTailAdder())
 	result = SumListsForwardOrder(linkedList1, linkedList2)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
