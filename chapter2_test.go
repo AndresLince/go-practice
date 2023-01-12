@@ -174,3 +174,10 @@ func TestIncrementalNumberLinkedList(t *testing.T) {
 		t.Fatalf(`CreateIncrementalNumberLinkedList(linkedList, 2) expect a valid linked list`)
 	}
 }
+
+func TestNewLinkedListAppendToTailAdder(t *testing.T) {
+	linkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
+	if *linkedListAdder != *NewLinkedListAppendToTailAdder() {
+		t.Fatalf(`NewLinkedListAppendToTailAdder() expect a LinkedListAppendToTailAdder`)
+	}
+}
