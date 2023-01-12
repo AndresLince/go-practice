@@ -239,3 +239,7 @@ func CreateIncrementalNumberLinkedList(start int, end int) linkedList.Node {
 	}
 	return node
 }
+
+func NewLinkedListAppendToTailAdder() *linkedList.LinkedListStrategy {
+	return linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
+}
