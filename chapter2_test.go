@@ -38,48 +38,48 @@ func TestPartition(t *testing.T) {
 }
 
 func TestSumLists(t *testing.T) {
-	linkedList1 := ArrayToList([]int{4, 3, 4}, *NewLinkedListAppendToTailAdder())
-	linkedList2 := ArrayToList([]int{1, 4}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList := ArrayToList([]int{5, 7, 4}, *NewLinkedListAppendToTailAdder())
+	linkedList1 := ArrayToList([]interface{}{4, 3, 4}, *NewLinkedListAppendToTailAdder())
+	linkedList2 := ArrayToList([]interface{}{1, 4}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList := ArrayToList([]interface{}{5, 7, 4}, *NewLinkedListAppendToTailAdder())
 	linkedListAdder := linkedList.NewLinkedListAdder(linkedList.LinkedListAppendToTailAdder{})
-	result := SumLists(linkedList1, linkedList2, *linkedListAdder)
+	result := SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
 	}
-	linkedList1 = ArrayToList([]int{2, 3}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{1, 4, 8}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{3, 7, 8}, *NewLinkedListAppendToTailAdder())
-	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
+	linkedList1 = ArrayToList([]interface{}{2, 3}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{1, 4, 8}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{3, 7, 8}, *NewLinkedListAppendToTailAdder())
+	result = SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
 	}
-	linkedList1 = ArrayToList([]int{7, 1, 6}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{5, 9, 2}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{2, 1, 9}, *NewLinkedListAppendToTailAdder())
-	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
+	linkedList1 = ArrayToList([]interface{}{7, 1, 6}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{5, 9, 2}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{2, 1, 9}, *NewLinkedListAppendToTailAdder())
+	result = SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
 	}
-	linkedList1 = ArrayToList([]int{9, 9, 9}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{9, 9, 9}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{8, 9, 9, 1}, *NewLinkedListAppendToTailAdder())
-	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
+	linkedList1 = ArrayToList([]interface{}{9, 9, 9}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{9, 9, 9}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{8, 9, 9, 1}, *NewLinkedListAppendToTailAdder())
+	result = SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumLists() expect valid linkedList`)
 	}
 
 	linkedListAdder = linkedList.NewLinkedListAdder(linkedList.LinkedListPrependAdder{})
-	linkedList1 = ArrayToList([]int{4, 3, 1}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{4, 1}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{1, 4, 8}, *NewLinkedListAppendToTailAdder())
-	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
+	linkedList1 = ArrayToList([]interface{}{4, 3, 1}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{4, 1}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{1, 4, 8}, *NewLinkedListAppendToTailAdder())
+	result = SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`SumLists() expect valid linkedList`)
 	}
-	linkedList1 = ArrayToList([]int{7, 1, 6}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{5, 9, 2}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{9, 1, 2}, *NewLinkedListAppendToTailAdder())
-	result = SumLists(linkedList1, linkedList2, *linkedListAdder)
+	linkedList1 = ArrayToList([]interface{}{7, 1, 6}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{5, 9, 2}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{9, 1, 2}, *NewLinkedListAppendToTailAdder())
+	result = SumLists(*linkedList1, *linkedList2, *linkedListAdder)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`SumLists() expect valid linkedList`)
 	}
