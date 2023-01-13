@@ -86,13 +86,13 @@ func Partition(head linkedList.Node, partition int) linkedList.Node {
  * lnput:(6 -> 1 -> 7) + (2 -> 9 -> 5).That is,617 + 295.
  * Output: 9 -> 1 -> 2. That is, 912.
  */
-func SumLists(list1 linkedList.Node, list2 linkedList.Node, linkedListStrategy linkedList.LinkedListStrategy) linkedList.Node {
+func SumLists(list1 linkedList.Node, list2 linkedList.Node, linkedListStrategy linkedList.LinkedListStrategy) *linkedList.Node {
 	newList1 := &list1
 	newList2 := &list2
 
 	AddZeros(newList1, newList2)
 
-	var s []int
+	var s []interface{}
 	carry := 0
 
 	for newList1 != nil && newList2 != nil {
@@ -117,7 +117,7 @@ func SumLists(list1 linkedList.Node, list2 linkedList.Node, linkedListStrategy l
 	return ArrayToList(s, linkedListStrategy)
 }
 
-func ArrayToList(array []int, linkedListStrategy linkedList.LinkedListStrategy) linkedList.Node {
+func ArrayToList(array []interface{}, linkedListStrategy linkedList.LinkedListStrategy) *linkedList.Node {
 	newLinkedList := linkedList.Node{Data: array[0], Next: nil}
 	for i, v := range array {
 		if i == 0 {
@@ -125,7 +125,7 @@ func ArrayToList(array []int, linkedListStrategy linkedList.LinkedListStrategy) 
 		}
 		linkedListStrategy.AddToLinkedListResult(&newLinkedList, v)
 	}
-	return newLinkedList
+	return &newLinkedList
 }
 
 func AddZeros(list1 *linkedList.Node, list2 *linkedList.Node) {
@@ -146,7 +146,7 @@ func AddNumberToLinkedList(list1 *linkedList.Node, numberOfZeros int, number int
 	}
 }
 
-func SumListsForwardOrder(list1 linkedList.Node, list2 linkedList.Node) linkedList.Node {
+func SumListsForwardOrder(list1 linkedList.Node, list2 linkedList.Node) *linkedList.Node {
 	list1.Revert()
 	list2.Revert()
 
