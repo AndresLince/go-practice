@@ -118,15 +118,17 @@ func TestIsPalindrome(t *testing.T) {
 }
 
 func TestIsIntersection(t *testing.T) {
-	intersectionNode := &linkedList.Node{"d", &linkedList.Node{"a", &linkedList.Node{"s", nil}}}
-	linkedList1 := &linkedList.Node{"d", &linkedList.Node{"a", &linkedList.Node{"z", intersectionNode}}}
-	linkedList2 := &linkedList.Node{"p", &linkedList.Node{"e", &linkedList.Node{"r", &linkedList.Node{"r", &linkedList.Node{"o", intersectionNode}}}}}
+	intersectionNode := &linkedList.Node{Data: "d", Next: &linkedList.Node{Data: "a", Next: &linkedList.Node{Data: "s", Next: nil}}}
+	linkedList1 := &linkedList.Node{Data: "d", Next: &linkedList.Node{Data: "a", Next: &linkedList.Node{Data: "z", Next: intersectionNode}}}
+	linkedList2 := &linkedList.Node{Data: "p", Next: &linkedList.Node{
+		Data: "e", Next: &linkedList.Node{Data: "r", Next: &linkedList.Node{
+			Data: "r", Next: &linkedList.Node{Data: "o", Next: intersectionNode}}}}}
 	result := IsIntersection(linkedList1, linkedList2)
 	if !reflect.DeepEqual(result, intersectionNode) {
 		t.Fatalf(`TestIsIntersection() expect a valid linked list`)
 	}
-	linkedList1 = &linkedList.Node{"a", &linkedList.Node{"b", &linkedList.Node{"c", nil}}}
-	linkedList2 = &linkedList.Node{"z", &linkedList.Node{"b", &linkedList.Node{"c", nil}}}
+	linkedList1 = &linkedList.Node{Data: "a", Next: &linkedList.Node{Data: "b", Next: &linkedList.Node{Data: "c", Next: nil}}}
+	linkedList2 = &linkedList.Node{Data: "z", Next: &linkedList.Node{Data: "b", Next: &linkedList.Node{Data: "c", Next: nil}}}
 	result = IsIntersection(linkedList1, linkedList2)
 	if result != nil {
 		t.Fatalf(`TestIsIntersection() expect nil`)
