@@ -86,17 +86,17 @@ func TestSumLists(t *testing.T) {
 }
 
 func TestSumListsForwardOrder(t *testing.T) {
-	linkedList1 := ArrayToList([]int{1, 3, 4}, *NewLinkedListAppendToTailAdder())
-	linkedList2 := ArrayToList([]int{1, 4}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList := ArrayToList([]int{1, 4, 8}, *NewLinkedListAppendToTailAdder())
-	result := SumListsForwardOrder(linkedList1, linkedList2)
+	linkedList1 := ArrayToList([]interface{}{1, 3, 4}, *NewLinkedListAppendToTailAdder())
+	linkedList2 := ArrayToList([]interface{}{1, 4}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList := ArrayToList([]interface{}{1, 4, 8}, *NewLinkedListAppendToTailAdder())
+	result := SumListsForwardOrder(*linkedList1, *linkedList2)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
 	}
-	linkedList1 = ArrayToList([]int{6, 1, 7}, *NewLinkedListAppendToTailAdder())
-	linkedList2 = ArrayToList([]int{2, 9, 5}, *NewLinkedListAppendToTailAdder())
-	expectedLinkedList = ArrayToList([]int{9, 1, 2}, *NewLinkedListAppendToTailAdder())
-	result = SumListsForwardOrder(linkedList1, linkedList2)
+	linkedList1 = ArrayToList([]interface{}{6, 1, 7}, *NewLinkedListAppendToTailAdder())
+	linkedList2 = ArrayToList([]interface{}{2, 9, 5}, *NewLinkedListAppendToTailAdder())
+	expectedLinkedList = ArrayToList([]interface{}{9, 1, 2}, *NewLinkedListAppendToTailAdder())
+	result = SumListsForwardOrder(*linkedList1, *linkedList2)
 	if !reflect.DeepEqual(result, expectedLinkedList) {
 		t.Fatalf(`TestSumListsForwardOrder() expect valid linkedList`)
 	}
