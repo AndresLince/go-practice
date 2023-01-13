@@ -134,14 +134,14 @@ func TestIsIntersection(t *testing.T) {
 }
 
 func TestLoopDetection(t *testing.T) {
-	newLinkedList := &linkedList.Node{"d", &linkedList.Node{"a", &linkedList.Node{"z", nil}}}
+	newLinkedList := ArrayToList([]interface{}{"d", "a", "z"}, *NewLinkedListAppendToTailAdder())
 	newLinkedList.Next.Next.Next = newLinkedList
 	result := LoopDetection(newLinkedList)
 	if !reflect.DeepEqual(result.Next, newLinkedList) {
 		t.Fatalf(`TestLoopDetection() expect a valid linked list`)
 	}
-	tail := &linkedList.Node{"d", &linkedList.Node{"a", &linkedList.Node{"z", nil}}}
-	newLinkedList = &linkedList.Node{"d", &linkedList.Node{"a", &linkedList.Node{"z", nil}}}
+	tail := ArrayToList([]interface{}{"d", "a", "z"}, *NewLinkedListAppendToTailAdder())
+	newLinkedList = ArrayToList([]interface{}{"d", "a", "z"}, *NewLinkedListAppendToTailAdder())
 	newLinkedList.Next.Next.Next = tail
 	result = LoopDetection(newLinkedList)
 	if result != nil {
