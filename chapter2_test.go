@@ -103,16 +103,14 @@ func TestSumListsForwardOrder(t *testing.T) {
 }
 
 func TestIsPalindrome(t *testing.T) {
-	newlinkedList := &linkedList.Node{"D", &linkedList.Node{"a", &linkedList.Node{"b", &linkedList.Node{"a", &linkedList.Node{"l",
-		&linkedList.Node{"e", &linkedList.Node{"a", &linkedList.Node{"r", &linkedList.Node{"r", &linkedList.Node{"o", &linkedList.Node{"z",
-			&linkedList.Node{"a", &linkedList.Node{"l", &linkedList.Node{"a", &linkedList.Node{"z", &linkedList.Node{"o",
-				&linkedList.Node{"r", &linkedList.Node{"r", &linkedList.Node{"a", &linkedList.Node{"e", &linkedList.Node{"l",
-					&linkedList.Node{"a", &linkedList.Node{"b", &linkedList.Node{"a", &linkedList.Node{"d", nil}}}}}}}}}}}}}}}}}}}}}}}}}
+	newlinkedList := ArrayToList([]interface{}{
+		"D", "a", "b", "a", "l", "e", "a", "r", "r", "o", "z", "a", "l", "a", "z", "o", "r", "r", "a", "e", "l", "A", "b", "a", "d",
+	}, *NewLinkedListAppendToTailAdder())
 	result := IsPalindrome(newlinkedList)
 	if result != true {
 		t.Fatalf(`TestIsPalindrome() expect true`)
 	}
-	newlinkedList = &linkedList.Node{"P", &linkedList.Node{"e", &linkedList.Node{"r", &linkedList.Node{"r", &linkedList.Node{"o", nil}}}}}
+	newlinkedList = ArrayToList([]interface{}{"p", "e", "r", "r", "o"}, *NewLinkedListAppendToTailAdder())
 	result = IsPalindrome(newlinkedList)
 	if result != false {
 		t.Fatalf(`TestIsPalindrome() expect false`)
