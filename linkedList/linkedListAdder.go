@@ -3,14 +3,14 @@ package linkedList
 // LinkedListAdder known how to Add a number
 type LinkedListAdder interface {
 	// Concrete types should implement this method.
-	ResultAdd(node *Node, number int)
+	ResultAdd(node *Node, number interface{})
 }
 
 // LinkedListPrependAdder is a concrete type that implements Add
 type LinkedListPrependAdder struct{}
 
 // ResultAdd -- LinkedListPrependAdder adds the number
-func (sum LinkedListPrependAdder) ResultAdd(node *Node, number int) {
+func (sum LinkedListPrependAdder) ResultAdd(node *Node, number interface{}) {
 	node.Prepend(number)
 }
 
@@ -18,7 +18,7 @@ func (sum LinkedListPrependAdder) ResultAdd(node *Node, number int) {
 type LinkedListAppendToTailAdder struct{}
 
 // ResultAdd -- LinkedListAppendToTailAdder adds the number
-func (sum LinkedListAppendToTailAdder) ResultAdd(node *Node, number int) {
+func (sum LinkedListAppendToTailAdder) ResultAdd(node *Node, number interface{}) {
 	node.AppendToTail(number)
 }
 
@@ -39,6 +39,6 @@ func NewLinkedListAdder(dr LinkedListAdder) *LinkedListStrategy {
 }
 
 // AddToLinkedList performs the addition to the result
-func (t *LinkedListStrategy) AddToLinkedListResult(node *Node, number int) {
+func (t *LinkedListStrategy) AddToLinkedListResult(node *Node, number interface{}) {
 	t.LinkedListAdder.ResultAdd(node, number)
 }
